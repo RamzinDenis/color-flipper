@@ -3,7 +3,12 @@ import PropTypes from "prop-types";
 import styles from "./cell.module.scss";
 
 const Cell = ({ rowIndex, colIndex }) => {
-	return <div className={styles.cell}>{`${++rowIndex}${++colIndex}`}</div>;
+	return (
+		<div className={styles.cell}>
+			<div className={styles.front}></div>
+			<div className={styles.back}></div>
+		</div>
+	);
 };
 
 Cell.propTypes = {
