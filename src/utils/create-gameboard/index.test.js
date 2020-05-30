@@ -14,7 +14,7 @@ describe("creaeGameBoard", () => {
 		expect(gameBoard.length).toEqual(4);
 	});
 	it("subarray should contain one of the passed colors", () => {
-		const plainArray = [...fakeColors];
+		const plainArray = fakeColors.flat();
 		expect(plainArray).toContain(1);
 	});
 });

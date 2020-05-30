@@ -7,6 +7,7 @@ import store from "../../redux/store";
 const App = () => {
 	return (
 		<Provider store={store}>
+			<h2 className={styles.title}>Color Flipper</h2>
 			<div className={styles.wrapper}>
 				<Grid />
 			</div>
