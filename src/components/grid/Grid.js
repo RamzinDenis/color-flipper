@@ -1,9 +1,15 @@
-import React, { Children } from "react";
+import React, { Children, useEffect } from "react";
 import styles from "./grid.module.scss";
 import Row from "../row";
 import Cell from "../cell";
+import { connect } from "react-redux";
+import { createGameBoardAction } from "../../redux/actions";
+import PropTypes from "prop-types";
 
-const Grid = () => {
+const Grid = ({ createGameBoardAction }) => {
+	useEffect(() => {
+		createGameBoardAction();
+	});
 	return (
 		<div className={styles.container}>
 			{Children.toArray(
@@ -21,4 +27,8 @@ const Grid = () => {
 	);
 };
 
-export default Grid;
+Grid.propTypes = {
+	createGameBoardAction: PropTypes.func.isRequired,
+};
+
+export default connect(null, { createGameBoardAction })(Grid);

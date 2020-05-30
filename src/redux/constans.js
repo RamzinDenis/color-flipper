@@ -1,1 +1,1 @@
-export const FILL_GRID = "FILL_GRID";
+export const CREATE_GAME_BOARD = "CREATE_GAME_BOARD";

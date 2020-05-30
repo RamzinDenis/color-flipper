@@ -1,4 +1,5 @@
-import { FILL_GRID } from "./constans";
+import { CREATE_GAME_BOARD } from "./constans";
+import createGameBoard from "../utils/create-gameboard";
 
 const initialState = {
 	grid: [],
@@ -6,8 +7,8 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
 	switch (type) {
-		case FILL_GRID:
-			return { ...state, ...payload };
+		case CREATE_GAME_BOARD:
+			return { ...state, grid: createGameBoard(payload) };
 
 		default:
 			return state;
