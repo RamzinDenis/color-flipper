@@ -45,11 +45,11 @@ export default (state = initialState, { type, payload }) => {
 					selectedCell: "",
 				},
 			};
-		// case constans.SELECT_SECOND_TILE_FAILURE:
-		// 	return {
-		// 		...state,
-		// 		selected: initialState.selected,
-		// 	};
+		case constans.SELECT_SECOND_TILE_FAILURE:
+			return {
+				...state,
+				selected: initialState.selected,
+			};
 		case constans.FINISH_GAME:
 			return {
 				...state,
