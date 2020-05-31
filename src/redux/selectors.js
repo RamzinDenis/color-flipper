@@ -17,3 +17,5 @@ export const getBgColor = createSelector(
 		return board.selected.flipped[`${rowIndex}${colIndex}`] || "";
 	}
 );
+
+export const getIsSolved = createSelector(getBoard, board => board.isSolved);

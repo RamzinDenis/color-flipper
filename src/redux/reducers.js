@@ -55,7 +55,11 @@ export default (state = initialState, { type, payload }) => {
 				...state,
 				isSolved: true,
 			};
-
+		case constans.SEE_RESULT:
+			return {
+				...state,
+				isSolved: false,
+			};
 		default:
 			return state;
 	}

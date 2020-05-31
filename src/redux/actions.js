@@ -38,3 +38,7 @@ export const selectSecondTile = (rowIndex, colIndex) => (
 		});
 	}
 };
+
+export const seeResult = () => ({
+	type: constans.SEE_RESULT,
+});
