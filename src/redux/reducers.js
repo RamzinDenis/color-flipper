@@ -14,7 +14,7 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
 	switch (type) {
 		case constans.CREATE_GAME_BOARD:
-			return { ...state, grid: createGameBoard(payload) };
+			return { ...initialState, grid: createGameBoard(payload) };
 		case constans.SELECT_FIRST_TILE:
 			return {
 				...state,
@@ -55,6 +55,7 @@ export default (state = initialState, { type, payload }) => {
 				...state,
 				isSolved: true,
 			};
+
 		default:
 			return state;
 	}
