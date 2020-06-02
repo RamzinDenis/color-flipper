@@ -6,17 +6,22 @@ export const createGameBoardAction = (colorTheme = colors) => ({
 	payload: colorTheme,
 });
 
-export const selectFirstTile = (rowIndex, colIndex) => ({
-	type: constans.SELECT_FIRST_TILE,
-	payload: { rowIndex, colIndex },
-});
+export const selectFirstTile = (rowIndex, colIndex) => (dispatch, getState) => {
+	if (getState().board.selected.isFlipping) return;
+	else {
+		dispatch({
+			type: constans.SELECT_FIRST_TILE,
+			payload: { rowIndex, colIndex },
+		});
+	}
+};
 
 export const selectSecondTile = (rowIndex, colIndex) => (
 	dispatch,
 	getState
 ) => {
 	const board = getState().board;
-
+	if (board.selected.isFlipping) return;
 	dispatch({
 		type: constans.SELECT_SECOND_TILE,
 		payload: {
@@ -25,10 +30,17 @@ export const selectSecondTile = (rowIndex, colIndex) => (
 		},
 	});
 	if (board.selected.selectedCell !== board.grid[rowIndex][colIndex]) {
+		dispatch({
+			type: constans.SELECT_SECOND_TILE_FAILURE_BEGIN,
+		});
 		setTimeout(
 			() =>
 				dispatch({
 					type: constans.SELECT_SECOND_TILE_FAILURE,
+					payload: {
+						rowIndex,
+						colIndex,
+					},
 				}),
 			500
 		);

@@ -7,6 +7,8 @@ const initialState = {
 		selectedCell: "",
 		isSelected: false,
 		flipped: {},
+		prev: "",
+		isFlipping: false,
 	},
 	isSolved: false,
 };
@@ -28,6 +30,7 @@ export default (state = initialState, { type, payload }) => {
 							payload.rowIndex
 						][payload.colIndex],
 					},
+					prev: `${payload.rowIndex}${payload.colIndex}`,
 				},
 			};
 		case constans.SELECT_SECOND_TILE:
@@ -45,11 +48,33 @@ export default (state = initialState, { type, payload }) => {
 					selectedCell: "",
 				},
 			};
-		case constans.SELECT_SECOND_TILE_FAILURE:
+		case constans.SELECT_SECOND_TILE_FAILURE_BEGIN:
 			return {
 				...state,
-				selected: initialState.selected,
+				selected: {
+					...state.selected,
+					isFlipping: true,
+				},
 			};
+		case constans.SELECT_SECOND_TILE_FAILURE:
+			const {
+				[`${payload.rowIndex}${payload.colIndex}`]: current,
+				[`${state.selected.prev}`]: prevCell,
+				...rest
+			} = state.selected.flipped;
+			return {
+				...state,
+				selected: {
+					...state.selected,
+					flipped: {
+						...rest,
+					},
+					prev: "",
+					isSelected: false,
+					isFlipping: false,
+				},
+			};
+
 		case constans.FINISH_GAME:
 			return {
 				...state,
