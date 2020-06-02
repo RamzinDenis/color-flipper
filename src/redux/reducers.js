@@ -70,7 +70,6 @@ export default (state = initialState, { type, payload }) => {
 						...rest,
 					},
 					prev: "",
-					isSelected: false,
 					isFlipping: false,
 				},
 			};
